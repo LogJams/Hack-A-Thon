@@ -6,7 +6,7 @@ public class Land {
 	// y coord?
 	
 	public float height;
-	public boolean isWeet;
+	public boolean isWet;
 	
 	public Land(float height){
 		this.height = height;

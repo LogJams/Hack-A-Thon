@@ -43,21 +43,26 @@ public class Render {
 		GL11.glColor3f(0.2f, 0.75f, 0.2f);
 		GL11.glBegin(GL11.GL_QUADS);
 		//Draw the world
+		float wet = 0.5f;
+		float size = Controller.landSpacing;
+
 		for (int i = 0; i < world.length-1; i++) { //x
 			for (int j = 0; j < world[0].length-1; j++) { //z
-				float size = Controller.landSpacing;
-				
+				wet = 0;
+				if (world[i][j].isWet) {
+					wet = 0.5f;
+				}
 				GL11.glVertex3f(0 + i*size, world[i][j].height, 0 + j*size); //far left
-				GL11.glTexCoord2f(0, 0);
+				GL11.glTexCoord2f(0+wet, 0+wet);
 				
 				GL11.glVertex3f(0 + i*size, world[i][j+1].height, size + j*size); //near left
-				GL11.glTexCoord2f(0, 1);
+				GL11.glTexCoord2f(0+wet, 0.5f+wet);
 
 				GL11.glVertex3f(size + i*size, world[i+1][j+1].height, size + j*size); //near right
-				GL11.glTexCoord2f(1, 1);
+				GL11.glTexCoord2f(1, 0.5f+wet);
 
 				GL11.glVertex3f(size + i*size, world[i+1][j].height, 0 + j*size); //far right
-				GL11.glTexCoord2f(1, 0);
+				GL11.glTexCoord2f(1, 0+wet);
 			}
 		}
 		GL11.glEnd();	

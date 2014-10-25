@@ -44,7 +44,7 @@ public class Driver {
 	}
 	
 	public void initGraphics() {
-		GL11.glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // Blue Background
+		GL11.glClearColor(135/255f, 206/255f, 255/255f, 1.0f); // Blue Background
 	//	glEnable(GL_CULL_FACE);// Enables face culling (working)
 	//	glCullFace(GL_BACK); // Doesn't draw back faces
 

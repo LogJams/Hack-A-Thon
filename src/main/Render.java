@@ -23,19 +23,18 @@ public class Render {
 		//Draw the world
 		for (int i = 0; i < world.length-1; i++) { //x
 			for (int j = 0; j < world[0].length-1; j++) { //z
+				float size = Controller.landSpacing;
 				
-				//System.out.println(world[i][j].height);
-				
-				GL11.glVertex3f(0 + i-2, -1 + world[i][j].height, -1 + j-8); //far left
+				GL11.glVertex3f(0 + i*size, world[i][j].height, 0 + j*size); //far left
 				GL11.glTexCoord2f(0, 0);
 				
-				GL11.glVertex3f(0 + i-2, -1 + world[i][j+1].height, 0 + j-8); //near left
+				GL11.glVertex3f(0 + i*size, world[i][j+1].height, size + j*size); //near left
 				GL11.glTexCoord2f(0, 1);
 
-				GL11.glVertex3f(1 + i-2, -1 + world[i+1][j+1].height, 0 + j-8); //near right
+				GL11.glVertex3f(size + i*size, world[i+1][j+1].height, size + j*size); //near right
 				GL11.glTexCoord2f(1, 1);
 
-				GL11.glVertex3f(1 + i-2, -1 + world[i+1][j].height, -1 + j-8); //far right
+				GL11.glVertex3f(size + i*size, world[i+1][j].height, 0 + j*size); //far right
 				GL11.glTexCoord2f(1, 0);
 			}
 		}

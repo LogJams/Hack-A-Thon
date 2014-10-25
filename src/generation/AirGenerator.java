@@ -16,13 +16,7 @@ public class AirGenerator {
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < depth; j++) {
 				height[i][j] = (world[i][j].height >= threshold);
-				if (height[i][j]) {
-					System.out.print("X ");
-				} else {
-					System.out.print("0 ");
-				}
 			}
-			System.out.println("");
 		}
 		float[][] pressure = null;
 		//pick air direction, X or Z, + or - 1

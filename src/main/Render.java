@@ -11,13 +11,35 @@ import org.newdawn.slick.util.ResourceLoader;
 public class Render {
 
 	Texture texture;
+	Texture water;
 	
 	public Render() {
-		texture = loadTexture();
+		texture = loadTexture("Texture");
+		water = loadTexture("Water");
 		texture.bind();
 	}
 	
+	public void drawWater() {
+		int worldSize = Math.round(Controller.landSpacing * Controller.worldSize + 0.5f);
+		GL11.glColor3f(1, 1, 1);
+		water.bind();
+		GL11.glBegin(GL11.GL_QUADS);
+		GL11.glVertex3f(-1,0, -1); //far left
+		GL11.glTexCoord2f(0, 0);
+		
+		GL11.glVertex3f(-1, 0, worldSize+2); //near left
+		GL11.glTexCoord2f(0, 1);
+
+		GL11.glVertex3f(worldSize+2, 0, worldSize+2); //near right
+		GL11.glTexCoord2f(1, 1);
+
+		GL11.glVertex3f(worldSize+2, 0, -1); //far right
+		GL11.glTexCoord2f(1, 0);
+		GL11.glEnd();
+	}
+	
 	public void update(Land[][] world) {
+		texture.bind();
 		GL11.glColor3f(0.2f, 0.75f, 0.2f);
 		GL11.glBegin(GL11.GL_QUADS);
 		//Draw the world
@@ -41,10 +63,10 @@ public class Render {
 		GL11.glEnd();	
 	}
 	
-	public static Texture loadTexture() {
+	public static Texture loadTexture(String name) {
 		Texture t = null;
 		try {
-			t = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/Texture.png"));
+			t = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/"+name+".png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(0);

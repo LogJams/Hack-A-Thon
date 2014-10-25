@@ -15,8 +15,8 @@ public class Camera {
 	float toRad = (float)Math.PI/180; //conversion factor
 
 	public Camera() {
-		position = new Vector3f(0,0,0);
-		rotation = new Vector3f(0,0,0);
+		position = new Vector3f(0,-3,0);
+		rotation = new Vector3f(0,135,0);
 	}
 
 	public void update() {

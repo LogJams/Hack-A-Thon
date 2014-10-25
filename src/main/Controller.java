@@ -1,6 +1,7 @@
 package main;
 
 import generation.AirGenerator;
+import generation.RadialGradient;
 import generation.WorldGenerator;
 
 public class Controller {
@@ -8,33 +9,33 @@ public class Controller {
 	private Render draw;
 	WorldGenerator worldGen;
 	AirGenerator airGen;
+	RadialGradient radGrad;
 	Camera cam;
 	
-	private int worldSize = 100;
+	public static int worldSize = 100;
 	public static final float landSpacing = 0.2f;
+	private int scale = 2;
 	Land[][] world;
 	
 	public Controller() {
 		draw = new Render();
 		cam = new Camera();
 		worldGen = new WorldGenerator();
+		radGrad = new RadialGradient();
 		airGen = new AirGenerator();
 		world = new Land[worldSize][worldSize];
 	}
 	
 	public void generate() {
-		worldGen.generate(world,3);
-//		for (int i = 0; i < worldSize; i++) {
-//			for (int j = 0; j < worldSize; j++) {
-//				world[i][j] = new Land((float)Math.abs((Math.cos(i*1.3f)*Math.sin(j))*3));
-//			}
-//		}
-		airGen.generate(world, 2.65f);
+		worldGen.generate(world,scale);
+		radGrad.generate(world);
+		airGen.generate(world, 1.65f);
 	}
 	
 	public void update() {
 		//render
 		draw.update(world);
+		draw.drawWater();
 		cam.update();
 	}
 	

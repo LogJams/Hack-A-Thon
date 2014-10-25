@@ -5,8 +5,8 @@ import main.Land;
 public class WorldGenerator {
 
 	//get in world and change the height
-	float xFreq = 5;
-	float zFreq = 8;
+	int xFreq = 5;
+	int zFreq = 8;
 	float[][] functionResults;
 	int prime1 = 15731;
 	int prime2 = 789221;
@@ -26,7 +26,7 @@ public class WorldGenerator {
 			}
 			x+=xFreq;
 		}
-
+		System.out.println("world[0]: "+world[0].length);
 		for(int i = 0; i < world.length; i++){
 			for(int j = 0; j<world[0].length; j++){
 				world[i][j] = new Land(interpolate(i,j));
@@ -42,28 +42,40 @@ public class WorldGenerator {
 	}
 
 	public float interpolate(int x, int z){
-		System.out.println("x: "+x+", z: "+z);
+		z = (int) (z/zFreq);
 		x+=(xFreq);
-		System.out.println("functionResults["+functionResults.length+"]["+functionResults[0].length+"]");
 		int altx = x-2;
+		System.out.println("functionResults[0].length: "+functionResults[0].length);
 		float[] interps = new float[4];
 		for(int i = 0; i<4; i++){
-			System.out.println("i: "+i);
 			int left = (int) (altx/xFreq);
-			System.out.println("left: "+left);
 			int right = left+1;
-
+			
+			System.out.println("Altx: "+altx);
+			System.out.println("left: "+left);
+			System.out.println("right: "+right);
+			System.out.println("z: "+z);
+			if(z >= functionResults[0].length-1){
+				z = functionResults[0].length-1;
+			}
 			if(left <= 0){
-				if(right >= world.length){
-					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(x%xFreq));
+				left = 0;
+				if(right+1 >= functionResults.length){
+					right = functionResults.length-1;
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(altx%xFreq));
 				}else{
-					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(x%xFreq));
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(altx%xFreq));
 				}
-			}else if(right >= world.length){
-				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(x%xFreq));
+			}else if(right+1 >= functionResults.length){
+				right = functionResults.length -1;
+				if(left >= functionResults.length-1){
+					left = functionResults.length-1;
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(altx%xFreq));
+				}
+				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(altx%xFreq));
 			}
 			else{
-				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(x%xFreq));
+				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(altx%xFreq));
 			}
 			altx++;
 			if(altx == x){

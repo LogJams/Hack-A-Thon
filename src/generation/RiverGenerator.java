@@ -18,14 +18,16 @@ public class RiverGenerator {
 				if(world[i][j].height>=heightThreshold){
 					startOptions.add(world[i][j]);
 					j+=10;
+					i+=2;
 				}
 			}
 		}
 		
 		int numRivers = (int) (Math.random()*startOptions.size());
+		System.out.println(numRivers);
 		int rand = 0;
 		for(int i = 0; i < numRivers; i++){
-			rand = (int) (Math.random()*startOptions.size())/10;
+			rand = (int) (Math.random()*startOptions.size());
 			if(rand == startOptions.size()){
 				rand--;
 			}
@@ -34,18 +36,33 @@ public class RiverGenerator {
 		}
 		
 		for(int i = 0; i<riverStarts.size(); i++){
-			buildRiver(riverStarts.get(i), false);
+			startRiver(riverStarts.get(i));
 		}
 	}
 	
-	public boolean buildRiver(Land land, boolean done){
+	public void startRiver(Land land){
+		land.isWeet = true;
+		int rand = (int)(Math.random()*4);
+		if(land.height > lakeLevel){
+			buildRiver(land, rand);
+		}
+	}
+	
+	public boolean buildRiver(Land land, int direction){
 		land.isWeet = true;
 		int x = land.x;
 		int z = land.z;
 		if(land.height > lakeLevel){
-			buildRiver(world[x-1][z], false);
+			if(direction == 0){
+				buildRiver(world[x-1][z], direction);
+			}else if(direction == 1){
+				buildRiver(world[x+1][z], direction);
+			}else if(direction == 2){
+				buildRiver(world[x][z-1], direction);
+			}else{
+				buildRiver(world[x][z+1], direction);
+			}
 		}
-		return done;
-		
+		return true;
 	}
 }

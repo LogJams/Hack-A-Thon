@@ -14,7 +14,7 @@ public class Controller {
 	
 	public static int worldSize = 100;
 	public static final float landSpacing = 0.2f;
-	private int scale = 2;
+	private int scale = 1;
 	Land[][] world;
 	
 	public Controller() {

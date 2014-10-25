@@ -24,16 +24,16 @@ public class Render {
 		GL11.glColor3f(1, 1, 1);
 		water.bind();
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glVertex3f(-1,0, -1); //far left
+		GL11.glVertex3f(-1,0.1f, -1); //far left
 		GL11.glTexCoord2f(0, 0);
 		
-		GL11.glVertex3f(-1, 0, worldSize+2); //near left
+		GL11.glVertex3f(-1, 0.1f, worldSize+2); //near left
 		GL11.glTexCoord2f(0, 1);
 
-		GL11.glVertex3f(worldSize+2, 0, worldSize+2); //near right
+		GL11.glVertex3f(worldSize+2, 0.1f, worldSize+2); //near right
 		GL11.glTexCoord2f(1, 1);
 
-		GL11.glVertex3f(worldSize+2, 0, -1); //far right
+		GL11.glVertex3f(worldSize+2, 0.1f, -1); //far right
 		GL11.glTexCoord2f(1, 0);
 		GL11.glEnd();
 	}

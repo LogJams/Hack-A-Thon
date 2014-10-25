@@ -17,17 +17,17 @@ public class WorldGenerator {
 		functionResults = new float[(int) (world.length/xFreq)][(int) (world[0].length/zFreq)];
 		int x = 0;
 		int z = 0;
-		for(int i = 0; i<world.length/xFreq; i++){
-			for(int j = 0; j<world.length/zFreq; i++){
+		for(int i = 0; i<functionResults.length; i++){
+			for(int j = 0; j<functionResults[0].length; j++){
 				functionResults[i][j] = function(x,z);
 				z+=zFreq;
 			}
 			x+=xFreq;
 		}
-		
+
 		for(int i = 0; i < world.length; i++){
-			for(int j = 0; j<world.length; j++){
-				world[i][j].height = interpolate(i,j);
+			for(int j = 0; j<world[0].length; j++){
+				world[i][j] = new Land(interpolate(i,j));
 			}
 		}
 	}
@@ -40,15 +40,24 @@ public class WorldGenerator {
 	}
 
 	public float interpolate(int x, int z){
+		System.out.println("x: "+x+", z: "+z);
+		x+=(xFreq);
+		System.out.println("functionResults["+functionResults.length+"]["+functionResults[0].length+"]");
 		int altx = x-2;
 		float[] interps = new float[4];
 		for(int i = 0; i<4; i++){
+			System.out.println("i: "+i);
 			int left = (int) (altx/xFreq);
+			System.out.println("left: "+left);
 			int right = left+1;
 
-			if(left == 0){
-				interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(x%xFreq));
-			}else if(right == world.length){
+			if(left <= 0){
+				if(right >= world.length){
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(x%xFreq));
+				}else{
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(x%xFreq));
+				}
+			}else if(right >= world.length){
 				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(x%xFreq));
 			}
 			else{

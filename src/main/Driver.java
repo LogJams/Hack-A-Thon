@@ -6,12 +6,17 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
+
 
 public class Driver {
 	
 	public int screenWidth = 800;
 	public int screenHeight = 600;
 	Controller controller;
+	public float fovAngle = 180;
+	public float nearClip = .001f;
+	public float farClip= 1000;
 	
 	public Driver() {
 		controller = new Controller();
@@ -45,18 +50,26 @@ public class Driver {
 	//	glEnable(GL_CULL_FACE);// Enables face culling (working)
 	//	glCullFace(GL_BACK); // Doesn't draw back faces
 
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
-		GL11.glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		glEnable(GL_DEPTH_TEST);
+		glEnable(GL11.GL_TEXTURE_2D);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+
+		 GLU.gluPerspective(45.0f, Display.getWidth() / Display.getHeight(), 1.0f, 100.0f);
+		 glMatrixMode(GL_MODELVIEW);
 	}
 	
 	public void testDraw() {
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glVertex2f(50, 0);
-		GL11.glVertex2f(50, 50);
-		GL11.glVertex2f(0, 50);
-		GL11.glVertex2f(0, 0);
+		GL11.glVertex3f(50, 0, -20);
+		GL11.glVertex3f(50, 50, -20);
+		GL11.glVertex3f(0, 50, -20);
+		GL11.glVertex3f(0, 0, -20);
 		GL11.glEnd();
 	}
 

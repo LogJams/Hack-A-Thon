@@ -2,6 +2,7 @@ package main;
 
 import generation.AirGenerator;
 import generation.RadialGradient;
+import generation.RiverGenerator;
 import generation.WorldGenerator;
 
 public class Controller {
@@ -10,6 +11,7 @@ public class Controller {
 	WorldGenerator worldGen;
 	AirGenerator airGen;
 	RadialGradient radGrad;
+	RiverGenerator riverGen;
 	Camera cam;
 	
 	public static int worldSize = 100;
@@ -23,6 +25,7 @@ public class Controller {
 		worldGen = new WorldGenerator();
 		radGrad = new RadialGradient();
 		airGen = new AirGenerator();
+		riverGen = new RiverGenerator();
 		world = new Land[worldSize][worldSize];
 	}
 	
@@ -30,6 +33,7 @@ public class Controller {
 		worldGen.generate(world,scale);
 		radGrad.generate(world);
 		airGen.generate(world, 1.65f);
+		riverGen.generate(world, 0.50f, 0.1f);
 	}
 	
 	public void update() {

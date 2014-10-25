@@ -35,7 +35,6 @@ public class Driver {
 		while (!Display.isCloseRequested()) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glLoadIdentity();
-			testDraw();
 			controller.update();
 			Display.update();
 		}
@@ -44,7 +43,7 @@ public class Driver {
 	
 	public void initGraphics() {
 	//	GL11.glEnable(GL11.GL_TEXTURE_2D); // Enable Texture Mapping
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Black Background
+		GL11.glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // Black Background
 		GL11.glEnable(GL11.GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	//	glEnable(GL_CULL_FACE);// Enables face culling (working)
@@ -62,15 +61,6 @@ public class Driver {
 
 		 GLU.gluPerspective(45.0f, Display.getWidth() / Display.getHeight(), 1.0f, 100.0f);
 		 glMatrixMode(GL_MODELVIEW);
-	}
-	
-	public void testDraw() {
-		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glVertex3f(50, 0, -20);
-		GL11.glVertex3f(50, 50, -20);
-		GL11.glVertex3f(0, 50, -20);
-		GL11.glVertex3f(0, 0, -20);
-		GL11.glEnd();
 	}
 
 	public static void main(String[] args) {

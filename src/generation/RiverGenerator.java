@@ -18,13 +18,11 @@ public class RiverGenerator {
 				if(world[i][j].height>=heightThreshold){
 					startOptions.add(world[i][j]);
 					j+=10;
-					System.out.println("riv");
 				}
 			}
 		}
 		
 		int numRivers = (int) (Math.random()*startOptions.size());
-		System.out.println(""+numRivers+" rivers");
 		int rand = 0;
 		for(int i = 0; i < numRivers; i++){
 			rand = (int) (Math.random()*startOptions.size())/10;

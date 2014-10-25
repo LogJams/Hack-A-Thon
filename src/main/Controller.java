@@ -14,7 +14,7 @@ public class Controller {
 	RiverGenerator riverGen;
 	Camera cam;
 	
-	public static int worldSize = 100;
+	public static int worldSize = 150;
 	public static final float landSpacing = 0.2f;
 	private int scale = 1;
 	Land[][] world;
@@ -33,7 +33,7 @@ public class Controller {
 		worldGen.generate(world,scale);
 		radGrad.generate(world);
 		airGen.generate(world, 1.65f);
-		riverGen.generate(world, 0.50f, 0.1f);
+		riverGen.generate(world, 0.80f, 0.1f);
 	}
 	
 	public void update() {

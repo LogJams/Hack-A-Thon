@@ -40,7 +40,7 @@ public class Render {
 	
 	public void update(Land[][] world) {
 		texture.bind();
-		GL11.glColor3f(0.2f, 0.75f, 0.2f);
+		GL11.glColor3f(.7f, .7f, .7f);
 		GL11.glBegin(GL11.GL_QUADS);
 		float wet = 0.5f;
 		//Draw the world

@@ -28,7 +28,7 @@ public class Driver {
 		}
 		controller = new Controller();
 
-		Display.setTitle("Hack and Tell");
+		Display.setTitle("Bahuta Island");
 		initGraphics();
 
 		controller.generate();
@@ -45,8 +45,8 @@ public class Driver {
 	
 	public void initGraphics() {
 		GL11.glClearColor(135/255f, 1206/255f, 250/255f, 1.0f); // Blue Background
-	//	glEnable(GL_CULL_FACE);// Enables face culling (working)
-	//	glCullFace(GL_BACK); // Doesn't draw back faces
+		glEnable(GL_CULL_FACE);// Enables face culling (working)
+		glCullFace(GL_BACK); // Doesn't draw back faces
 
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL11.GL_TEXTURE_2D);

@@ -14,21 +14,18 @@ public class Render {
 	
 	public Render() {
 		texture = loadTexture();
+		texture.bind();
 	}
 	
 	public void update(Land[][] world) {
-		texture.bind();
 		GL11.glColor3f(0.2f, 0.75f, 0.2f);
 		GL11.glBegin(GL11.GL_QUADS);
-//		float[][] world = new float[5][5];
-//		for (int i = 0; i < 5; i++) { //x
-//			for (int j = 0; j < 5; j++) { //z
-//				world[i][j] = Math.abs(i-j)/2.0f;
-//			}
-//		}
 		//Draw the world
 		for (int i = 0; i < world.length-1; i++) { //x
 			for (int j = 0; j < world[0].length-1; j++) { //z
+				
+				System.out.println(world[i][j].height);
+				
 				GL11.glVertex3f(0 + i-2, -1 + world[i][j].height, -1 + j-8); //far left
 				GL11.glTexCoord2f(0, 0);
 				
@@ -51,6 +48,7 @@ public class Render {
 			t = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/Texture.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.exit(0);
 		}
 		return t;
 	}

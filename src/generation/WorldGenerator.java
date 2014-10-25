@@ -62,20 +62,20 @@ public class WorldGenerator {
 				left = 0;
 				if(right+1 >= functionResults.length){
 					right = functionResults.length-1;
-					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(altx%xFreq));
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], ((altx%xFreq)/xFreq));
 				}else{
-					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(altx%xFreq));
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], ((altx%xFreq)/xFreq));
 				}
 			}else if(right+1 >= functionResults.length){
 				right = functionResults.length -1;
 				if(left >= functionResults.length-1){
 					left = functionResults.length-1;
-					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(altx%xFreq));
+					interps[i] = cubicInterpolate(functionResults[left][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], ((altx%xFreq)/xFreq));
 				}
-				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], (int)(altx%xFreq));
+				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right][z], ((altx%xFreq)/xFreq));
 			}
 			else{
-				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], (int)(altx%xFreq));
+				interps[i] = cubicInterpolate(functionResults[left-1][z], functionResults[left][z], functionResults[right][z], functionResults[right+1][z], ((altx%xFreq)/xFreq));
 			}
 			altx++;
 			if(altx == x){

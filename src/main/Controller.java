@@ -1,9 +1,13 @@
 package main;
 
+import generation.AirGenerator;
+import generation.WorldGenerator;
+
 public class Controller {
 
 	private Render draw;
 	WorldGenerator worldGen;
+	AirGenerator airGen;
 	Camera cam;
 	
 	private int worldSize = 20;
@@ -17,9 +21,12 @@ public class Controller {
 		world = new Land[worldSize][worldSize];
 	}
 	
+	public void generate() {
+	//	worldGen.generate(world);
+		airGen.generate(world);
+	}
+	
 	public void update() {
-		//update world generator
-		worldGen.update(world);
 		//render
 		draw.update(world);
 		cam.update();

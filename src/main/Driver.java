@@ -31,6 +31,7 @@ public class Driver {
 		Display.setTitle("Hack and Tell");
 		initGraphics();
 
+		controller.generate();
 		
 		while (!Display.isCloseRequested()) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

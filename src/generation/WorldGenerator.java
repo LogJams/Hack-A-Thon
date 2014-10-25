@@ -1,4 +1,6 @@
-package main;
+package generation;
+
+import main.Land;
 
 public class WorldGenerator {
 
@@ -12,7 +14,7 @@ public class WorldGenerator {
 	Land[][] world;
 
 
-	public void update(Land[][] world) {
+	public void generate(Land[][] world) {
 		this.world = world;
 		functionResults = new float[(int) (world.length/xFreq)][(int) (world[0].length/zFreq)];
 		int x = 0;

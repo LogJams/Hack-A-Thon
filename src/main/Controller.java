@@ -10,8 +10,8 @@ public class Controller {
 	AirGenerator airGen;
 	Camera cam;
 	
-	private int worldSize = 20;
-	public static final float landSpacing = 1.2f;
+	private int worldSize = 100;
+	public static final float landSpacing = 0.2f;
 	Land[][] world;
 	
 	public Controller() {
@@ -23,7 +23,7 @@ public class Controller {
 	}
 	
 	public void generate() {
-		worldGen.generate(world);
+		worldGen.generate(world,3);
 //		for (int i = 0; i < worldSize; i++) {
 //			for (int j = 0; j < worldSize; j++) {
 //				world[i][j] = new Land((float)Math.abs((Math.cos(i*1.3f)*Math.sin(j))*3));

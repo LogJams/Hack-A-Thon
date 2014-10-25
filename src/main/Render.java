@@ -24,7 +24,7 @@ public class Render {
 		for (int i = 0; i < world.length-1; i++) { //x
 			for (int j = 0; j < world[0].length-1; j++) { //z
 				
-				System.out.println(world[i][j].height);
+				//System.out.println(world[i][j].height);
 				
 				GL11.glVertex3f(0 + i-2, -1 + world[i][j].height, -1 + j-8); //far left
 				GL11.glTexCoord2f(0, 0);

@@ -19,7 +19,6 @@ public class Driver {
 	public float farClip= 1000;
 	
 	public Driver() {
-		controller = new Controller();
 		try {
 			Display.setDisplayMode(new DisplayMode(screenWidth, screenHeight));
 			Display.create();
@@ -27,6 +26,7 @@ public class Driver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		controller = new Controller();
 
 		Display.setTitle("Hack and Tell");
 		initGraphics();
@@ -43,10 +43,7 @@ public class Driver {
 	}
 	
 	public void initGraphics() {
-	//	GL11.glEnable(GL11.GL_TEXTURE_2D); // Enable Texture Mapping
-		GL11.glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // Black Background
-		GL11.glEnable(GL11.GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glClearColor(0.0f, 1.0f, 1.0f, 1.0f); // Blue Background
 	//	glEnable(GL_CULL_FACE);// Enables face culling (working)
 	//	glCullFace(GL_BACK); // Doesn't draw back faces
 

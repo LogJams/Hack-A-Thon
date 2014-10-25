@@ -34,9 +34,10 @@ public class Driver {
 		
 		while (!Display.isCloseRequested()) {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glLoadIdentity();
+			Time.update();
 			controller.update();
 			Display.update();
+			Display.sync(60);
 		}
 		Display.destroy();
 	}

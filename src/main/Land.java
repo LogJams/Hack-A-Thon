@@ -6,9 +6,13 @@ public class Land {
 	// y coord?
 	
 	public float height;
-	public boolean isWeet;
+	public boolean isWet;
+	public int xIndex = 0;
+	public int zIndex = 0;
 	
-	public Land(float height){
+	public Land(float height, int x, int z){
 		this.height = height;
+		xIndex = x;
+		zIndex = z;
 	}
 }

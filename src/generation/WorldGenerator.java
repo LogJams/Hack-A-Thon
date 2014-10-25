@@ -40,7 +40,7 @@ public class WorldGenerator {
 		// interpolate the algorithm results and populate the world
 		for(int i = 0; i < world.length; i++){
 			for(int j = 0; j<world[0].length; j++){
-				world[i][j] = new Land(heightScale*interpolate(i,j));
+				world[i][j] = new Land(heightScale*interpolate(i,j), i, j);
 			}
 		}
 	}
